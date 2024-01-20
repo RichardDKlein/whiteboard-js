@@ -1,5 +1,5 @@
 import assert from "assert";
-import { arrayHopscotch } from "../src/arrays/array-hopscotch.js";
+import { arrayHopscotch } from "../../src/arrays/array-hopscotch.js";
 
 describe("ArrayHopscotch", () => {
   before(() => {
