@@ -8,6 +8,18 @@ describe("ArrayHopscotch", () => {
     console.log("=====================");
   });
 
+  it("tests a null array", () => {
+    doTest(null, 0, []);
+  });
+
+  it("tests an undefined array", () => {
+    doTest(undefined, 0, []);
+  });
+
+  it("tests an array that is not an array", () => {
+    doTest(42, 0, []);
+  });
+
   it("tests an empty array", () => {
     doTest([], 0, []);
   });
@@ -39,7 +51,15 @@ describe("ArrayHopscotch", () => {
   function doTest(a, iStart, expected) {
     const actual = arrayHopscotch(a, iStart);
     assert.deepEqual(expected, actual);
-    console.log(a.toString() + ", start = " + iStart);
+    var prefix;
+    if (a === null || a === undefined) {
+      prefix = "<" + a + ">";
+    } else if (!Array.isArray(a)) {
+      prefix = "<not an array>";
+    } else {
+      prefix = "[" + a.toString() + "]";
+    }
+    console.log(prefix + ", start = " + iStart);
     console.log("Winning hops = " + actual);
   }
 });

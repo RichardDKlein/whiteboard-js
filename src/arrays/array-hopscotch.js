@@ -36,7 +36,14 @@ export function arrayHopscotch(a, iStart) {
 function arrayHopscotchWithLoopDetection(a, iStart, visited) {
   const result = [];
   // error checking
-  if (iStart < 0 || iStart >= a.length || a[iStart] < 0) {
+  if (
+    a === null ||
+    a === undefined ||
+    !Array.isArray(a) ||
+    iStart < 0 ||
+    iStart >= a.length ||
+    a[iStart] < 0
+  ) {
     return result;
   }
   // base case
