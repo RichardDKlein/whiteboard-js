@@ -60,6 +60,6 @@ describe("ArrayHopscotch", () => {
       prefix = "[" + a.toString() + "]";
     }
     console.log(prefix + ", start = " + iStart);
-    console.log("Winning hops = " + actual);
+    console.log("Winning hops = [" + actual + "]");
   }
 });

@@ -77,5 +77,5 @@ function arrayHopscotchWithLoopDetection(a, iStart, visited) {
     }
   }
   // no solution
-  return result;
+  return [];
 }
