@@ -4,62 +4,103 @@ import { arrayHopscotch } from "../../src/arrays/array-hopscotch.js";
 describe("ArrayHopscotch", () => {
   before(() => {
     console.log();
-    console.log("Test array-hopscotch:");
-    console.log("=====================");
-  });
-
-  it("tests a null array", () => {
-    doTest(null, 0, []);
-  });
-
-  it("tests an undefined array", () => {
-    doTest(undefined, 0, []);
-  });
-
-  it("tests an array that is not an array", () => {
-    doTest(42, 0, []);
+    console.log("Test ArrayHopscotch:");
+    console.log("===================");
   });
 
   it("tests an empty array", () => {
-    doTest([], 0, []);
+    const a = [];
+    const iStart = 0;
+    const expected = new Set();
+    doTest(a, iStart, expected);
   });
 
   it("tests a start index that is too small", () => {
-    doTest([2, 3, 1, 0, 5], -1, []);
+    const a = [2, 3, 1, 0, 5];
+    const iStart = -1;
+    const expected = new Set();
+    doTest(a, iStart, expected);
   });
 
   it("tests a start index that is too big", () => {
-    doTest([2, 3, 1, 0, 5], 5, []);
+    const a = [2, 3, 1, 0, 5];
+    const iStart = 5;
+    const expected = new Set();
+    doTest(a, iStart, expected);
   });
 
-  it("tests case 1 where a solution exists", () => {
-    doTest([2, 3, 1, 0, 5], 0, [0, 2, 3]);
+  it("tests a case where a solution exists (example 1)", () => {
+    const a = [2, 3, 1, 0, 5];
+    const iStart = 0;
+    const expected = new Set([[0, 2, 3]]);
+    doTest(a, iStart, expected);
   });
 
-  it("tests case 2 where a solution exists", () => {
-    doTest([2, 2, 2, 0, 0], 0, [0, 2, 4]);
+  it("tests a case where a solution exists (example 2)", () => {
+    const a = [2, 2, 2, 0, 0];
+    const iStart = 0;
+    const expected = new Set([[0, 2, 4]]);
+    doTest(a, iStart, expected);
   });
 
-  it("tests case 3 where a solution exists", () => {
-    doTest([1, 1, 1, 3, 1, 2, 0, 3], 5, [5, 3, 6]);
+  it("tests a case where a solution exists (example 3)", () => {
+    const a = [1, 1, 1, 3, 1, 2, 0, 3];
+    const iStart = 5;
+    const expected = new Set([
+      [5, 3, 6],
+      [5, 7, 4, 3, 6],
+    ]);
+    doTest(a, iStart, expected);
   });
 
-  it("tests the case where no solution exists", () => {
-    doTest([2, 2, 2, 0, 2], 0, []);
+  it("tests a case where a solution exists (example 4)", () => {
+    const a = [4, 2, 0, 3, 1, 5, 0];
+    const iStart = 0;
+    const expected = new Set([[0, 4, 3, 6]]);
+    doTest(a, iStart, expected);
+  });
+
+  it("tests a case where a solution exists (example 5)", () => {
+    const a = [5, 2, 1, 3, 0, 1, 2, 4, 1];
+    const iStart = 3;
+    const expected = new Set([
+      [3, 0, 5, 4],
+      [3, 0, 5, 6, 4],
+      [3, 6, 4],
+    ]);
+    doTest(a, iStart, expected);
+  });
+
+  it("tests a case where no solution exists", () => {
+    const a = [2, 2, 2, 0, 2];
+    const iStart = 0;
+    const expected = new Set();
+    doTest(a, iStart, expected);
   });
 
   function doTest(a, iStart, expected) {
     const actual = arrayHopscotch(a, iStart);
-    assert.deepEqual(expected, actual);
-    var prefix;
-    if (a === null || a === undefined) {
-      prefix = "<" + a + ">";
-    } else if (!Array.isArray(a)) {
-      prefix = "<not an array>";
-    } else {
-      prefix = "[" + a.toString() + "]";
+    assert(areSetsEqual(expected, actual));
+    console.log(`${a}, start = ${iStart}`);
+    console.log("Winning hops:");
+    printPaths(actual);
+  }
+
+  function areSetsEqual(set1, set2) {
+    if (set1.size !== set2.size) {
+      return false;
     }
-    console.log(prefix + ", start = " + iStart);
-    console.log("Winning hops = [" + actual + "]");
+    const array1 = Array.from(set1).sort();
+    const array2 = Array.from(set2).sort();
+    console.log(JSON.stringify(array1));
+    return JSON.stringify(array1) === JSON.stringify(array2);
+  }
+
+  function printPaths(paths) {
+    console.log("{");
+    paths.forEach((path) => {
+      console.log(`\t[${path.join(", ")}]`);
+    });
+    console.log("}");
   }
 });

@@ -1,40 +1,47 @@
 /**
  * Play a game of "array hopscotch".
  *
- * The game is played as follows. Given an array 'a'
+ * <p>The game is played as follows. Given an array 'a'
  * containing integers greater than or equal to zero,
- * and a starting index 'i', hop left and right in the
- * array by the distance contained in a[i]. Then repeat
- * the process for the new elements you land on.
+ * and a starting index 'iStart', hop left and right in the
+ * array by the distance contained in a[iStart]. Then repeat
+ * the process for the new elements you land on.</p>
  *
- * Continue in this manner until you either land on a
+ * <p>Continue in this manner until you either land on a
  * zero element (i.e. you win the game), or you realize
  * that it is not possible to land on a zero element
- * (i.e. you lose the game).
+ * (i.e. you lose the game).</p>
  *
- * We shall use a recursive algorithm to play the game,
+ * <p>We shall use a recursive algorithm to play the game,
  * keeping track of elements we have visited. If we land
  * on a zero, we win. If, regardless of whether we hop
  * left or right, we land on an element we have already
  * visited, then we are stuck in an infinite loop, and
- * we lose.
+ * we lose.</p>
  *
- * Since each element in the array is visited at most
- * once, the execution time is O(n), worst case.
+ * <p>Since each element in the array is visited at most
+ * once, the execution time is O(n), worst case.</p>
  *
- * @param {number[]} a The array in which to play hopscotch.
- * @param {number} iStart The starting index.
- * @returns {number[]} An array containing a winning
- * sequence of indices if one exists, otherwise an empty
- * array.
+ * @param {number[]} a The array in which we are to play
+ * "array hopscotch".
+ * @param {number} iStart The starting index for our game
+ * of hopscotch.
+ * @return {Set<number[]>} A Set containing all the winning
+ * paths. Each winning path is an array containing a sequence
+ * of hop indices that lead to a zero element. (If there are
+ * no winning paths, then the Set will be empty.)
  */
 export function arrayHopscotch(a, iStart) {
   const visited = new Set();
   return arrayHopscotchWithLoopDetection(a, iStart, visited);
 }
 
+/**
+ * Helper function with loop detection
+ * @private
+ */
 function arrayHopscotchWithLoopDetection(a, iStart, visited) {
-  const result = [];
+  const result = new Set();
   // error checking
   if (
     a === null ||
@@ -49,33 +56,36 @@ function arrayHopscotchWithLoopDetection(a, iStart, visited) {
   // base case
   const hop = a[iStart];
   if (hop === 0) {
-    result.push(iStart);
+    const path = [iStart];
+    result.add(path);
     return result;
   }
   // recursive step
-  visited.add(iStart);
+  visited.add(iStart); // don't revisit starting index
   const iHopLeft = iStart - hop;
   if (iHopLeft >= 0 && !visited.has(iHopLeft)) {
-    const remainingHops = arrayHopscotchWithLoopDetection(a, iHopLeft, visited);
-    if (remainingHops.length > 0) {
-      result.push(iStart);
-      result.push(...remainingHops);
-      return result;
+    const remainingPaths = arrayHopscotchWithLoopDetection(
+      a,
+      iHopLeft,
+      visited
+    );
+    for (const path of remainingPaths) {
+      path.unshift(iStart);
+      result.add(path);
     }
   }
   const iHopRight = iStart + hop;
   if (iHopRight < a.length && !visited.has(iHopRight)) {
-    const remainingHops = arrayHopscotchWithLoopDetection(
+    const remainingPaths = arrayHopscotchWithLoopDetection(
       a,
       iHopRight,
       visited
     );
-    if (remainingHops.length > 0) {
-      result.push(iStart);
-      result.push(...remainingHops);
-      return result;
+    for (const path of remainingPaths) {
+      path.unshift(iStart);
+      result.add(path);
     }
   }
-  // no solution
+  visited.delete(iStart); // ok to revisit starting index
   return result;
 }
