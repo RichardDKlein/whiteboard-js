@@ -92,7 +92,6 @@ describe("ArrayHopscotch", () => {
     }
     const array1 = Array.from(set1).sort();
     const array2 = Array.from(set2).sort();
-    console.log(JSON.stringify(array1));
     return JSON.stringify(array1) === JSON.stringify(array2);
   }
 
