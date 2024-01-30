@@ -54,36 +54,20 @@ function arrayHopscotchWithLoopDetection(a, iStart, visited) {
     return result;
   }
   // base case
-  const hop = a[iStart];
-  if (hop === 0) {
+  if (a[iStart] === 0) {
     const path = [iStart];
     result.add(path);
     return result;
   }
   // recursive step
   visited.add(iStart); // don't revisit starting index
-  const iHopLeft = iStart - hop;
-  if (iHopLeft >= 0 && !visited.has(iHopLeft)) {
-    const remainingPaths = arrayHopscotchWithLoopDetection(
-      a,
-      iHopLeft,
-      visited
-    );
-    for (const path of remainingPaths) {
-      path.unshift(iStart);
-      result.add(path);
-    }
-  }
-  const iHopRight = iStart + hop;
-  if (iHopRight < a.length && !visited.has(iHopRight)) {
-    const remainingPaths = arrayHopscotchWithLoopDetection(
-      a,
-      iHopRight,
-      visited
-    );
-    for (const path of remainingPaths) {
-      path.unshift(iStart);
-      result.add(path);
+  for (const iHop of [iStart - a[iStart], iStart + a[iStart]]) {
+    if (0 <= iHop && iHop < a.length && !visited.has(iHop)) {
+      const remainingPaths = arrayHopscotchWithLoopDetection(a, iHop, visited);
+      for (const path of remainingPaths) {
+        path.unshift(iStart);
+        result.add(path);
+      }
     }
   }
   visited.delete(iStart); // ok to revisit starting index
