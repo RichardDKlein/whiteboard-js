@@ -26,21 +26,31 @@
  * "array hopscotch".
  * @param {number} iStart The starting index for our game
  * of hopscotch.
- * @return {Set<number[]>} A Set containing all the winning
+ * @returns {Set<number[]>} A Set containing all the winning
  * paths. Each winning path is an array containing a sequence
  * of hop indices that lead to a zero element. (If there are
  * no winning paths, then the Set will be empty.)
  */
 export function arrayHopscotch(a, iStart) {
-  const visited = new Set();
-  return arrayHopscotchWithLoopDetection(a, iStart, visited);
+  return _helper(a, iStart, new Set());
 }
 
 /**
- * Helper function with loop detection
+ * Helper function to perform loop detection.
+ *
  * @private
+ * @param {number[]} a The array in which we are to play
+ * our game of array hopscotch.
+ * @param {number} iStart The starting index for our game/
+ * @param {Set<number>} visited A Set of indices that have
+ * already been visited during our game. Do not continue to
+ * explore any paths that land on any of these indices.
+ * @returns {Set<number[]>} A Set containing all the winning
+ * paths. Each winning path is an array containing a sequence
+ * of hop indices that lead to a zero element. (If there are
+ * no winning paths, then the Set will be empty.)
  */
-function arrayHopscotchWithLoopDetection(a, iStart, visited) {
+function _helper(a, iStart, visited) {
   const result = new Set();
   // error checking
   if (
@@ -53,6 +63,10 @@ function arrayHopscotchWithLoopDetection(a, iStart, visited) {
   ) {
     return result;
   }
+  // loop detection
+  if (visited.has(iStart)) {
+    return result;
+  }
   // base case
   if (a[iStart] === 0) {
     const path = [iStart];
@@ -61,13 +75,11 @@ function arrayHopscotchWithLoopDetection(a, iStart, visited) {
   }
   // recursive step
   visited.add(iStart); // don't revisit starting index
-  for (const iHop of [iStart - a[iStart], iStart + a[iStart]]) {
-    if (0 <= iHop && iHop < a.length && !visited.has(iHop)) {
-      const remainingPaths = arrayHopscotchWithLoopDetection(a, iHop, visited);
-      for (const path of remainingPaths) {
-        path.unshift(iStart);
-        result.add(path);
-      }
+  for (let iHop of [iStart - a[iStart], iStart + a[iStart]]) {
+    const remainingPaths = _helper(a, iHop, visited);
+    for (let path of remainingPaths) {
+      path.unshift(iStart);
+      result.add(path);
     }
   }
   visited.delete(iStart); // ok to revisit starting index
