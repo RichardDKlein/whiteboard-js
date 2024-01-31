@@ -23,9 +23,8 @@
  * once, the execution time is O(n), worst case.</p>
  *
  * @param {number[]} a The array in which we are to play
- * "array hopscotch".
- * @param {number} iStart The starting index for our game
- * of hopscotch.
+ * our game of array hopscotch.
+ * @param {number} iStart The starting index for our game.
  * @returns {Set<number[]>} A Set containing all the winning
  * paths. Each winning path is an array containing a sequence
  * of hop indices that lead to a zero element. (If there are
