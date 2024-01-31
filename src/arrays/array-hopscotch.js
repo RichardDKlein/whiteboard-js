@@ -38,13 +38,13 @@ export function arrayHopscotch(a, iStart) {
  * Helper function to perform loop detection.
  *
  * @private
- * @param {number[]} a Same as in main function.
- * @param {number} iStart Same as in main function.
+ * @param {number[]} a (Same as in main function.)
+ * @param {number} iStart (Same as in main function.)
  * @param {Set<number>} visited A Set of indices that have
  * already been visited during our game of array hopscotch.
  * Do not continue to explore any paths that land on any of
  * these indices.
- * @returns {Set<number[]>} Same as in main function.
+ * @returns {Set<number[]>} (Same as in main function.)
  */
 function _helper(a, iStart, visited) {
   const result = new Set();
