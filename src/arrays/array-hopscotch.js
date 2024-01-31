@@ -38,16 +38,13 @@ export function arrayHopscotch(a, iStart) {
  * Helper function to perform loop detection.
  *
  * @private
- * @param {number[]} a The array in which we are to play
- * our game of array hopscotch.
- * @param {number} iStart The starting index for our game/
+ * @param {number[]} a Same as in main function.
+ * @param {number} iStart Same as in main function.
  * @param {Set<number>} visited A Set of indices that have
- * already been visited during our game. Do not continue to
- * explore any paths that land on any of these indices.
- * @returns {Set<number[]>} A Set containing all the winning
- * paths. Each winning path is an array containing a sequence
- * of hop indices that lead to a zero element. (If there are
- * no winning paths, then the Set will be empty.)
+ * already been visited during our game of array hopscotch.
+ * Do not continue to explore any paths that land on any of
+ * these indices.
+ * @returns {Set<number[]>} Same as in main function.
  */
 function _helper(a, iStart, visited) {
   const result = new Set();
@@ -68,9 +65,7 @@ function _helper(a, iStart, visited) {
   }
   // base case
   if (a[iStart] === 0) {
-    const path = [iStart];
-    result.add(path);
-    return result;
+    return result.add([iStart]);
   }
   // recursive step
   visited.add(iStart); // don't revisit starting index
