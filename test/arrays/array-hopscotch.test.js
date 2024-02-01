@@ -29,21 +29,35 @@ describe("ArrayHopscotch", () => {
     doTest(a, iStart, expected);
   });
 
-  it("tests a case where a solution exists (example 1)", () => {
+  it("tests a start index that already wins", () => {
+    const a = [2, 3, 1, 0, 5];
+    const iStart = 3;
+    const expected = new Set([[3]]);
+    doTest(a, iStart, expected);
+  });
+
+  it("tests a case where there is one winning path (example 1)", () => {
     const a = [2, 3, 1, 0, 5];
     const iStart = 0;
     const expected = new Set([[0, 2, 3]]);
     doTest(a, iStart, expected);
   });
 
-  it("tests a case where a solution exists (example 2)", () => {
+  it("tests a case where there is one winning path (example 2)", () => {
     const a = [2, 2, 2, 0, 0];
     const iStart = 0;
     const expected = new Set([[0, 2, 4]]);
     doTest(a, iStart, expected);
   });
 
-  it("tests a case where a solution exists (example 3)", () => {
+  it("tests a case where there is one winning path (example 3)", () => {
+    const a = [4, 2, 0, 3, 1, 5, 0];
+    const iStart = 0;
+    const expected = new Set([[0, 4, 3, 6]]);
+    doTest(a, iStart, expected);
+  });
+
+  it("tests a case where there are two winning paths", () => {
     const a = [1, 1, 1, 3, 1, 2, 0, 3];
     const iStart = 5;
     const expected = new Set([
@@ -53,14 +67,7 @@ describe("ArrayHopscotch", () => {
     doTest(a, iStart, expected);
   });
 
-  it("tests a case where a solution exists (example 4)", () => {
-    const a = [4, 2, 0, 3, 1, 5, 0];
-    const iStart = 0;
-    const expected = new Set([[0, 4, 3, 6]]);
-    doTest(a, iStart, expected);
-  });
-
-  it("tests a case where a solution exists (example 5)", () => {
+  it("tests a case where there are three winning paths", () => {
     const a = [5, 2, 1, 3, 0, 1, 2, 4, 1];
     const iStart = 3;
     const expected = new Set([
