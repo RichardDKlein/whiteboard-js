@@ -4,8 +4,8 @@ import { arraySubsets } from "../../src/arrays/array-subsets.js";
 describe("ArraySubsets", () => {
   before(() => {
     console.log();
-    console.log("Test ArraySubsets:");
-    console.log("==================");
+    console.log("Test array-subsets:");
+    console.log("===================");
   });
 
   it("tests a null array", () => {

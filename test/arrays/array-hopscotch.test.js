@@ -4,8 +4,8 @@ import { arrayHopscotch } from "../../src/arrays/array-hopscotch.js";
 describe("ArrayHopscotch", () => {
   before(() => {
     console.log();
-    console.log("Test ArrayHopscotch:");
-    console.log("===================");
+    console.log("Test array-hopscotch:");
+    console.log("=====================");
   });
 
   it("tests an empty array", () => {
