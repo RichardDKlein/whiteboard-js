@@ -69,9 +69,9 @@ function _helper(a, iStart, visited) {
   }
   // recursive step
   visited.add(iStart); // don't revisit starting index
-  for (let iHop of [iStart - a[iStart], iStart + a[iStart]]) {
+  for (const iHop of [iStart - a[iStart], iStart + a[iStart]]) {
     const remainingPaths = _helper(a, iHop, visited);
-    for (let path of remainingPaths) {
+    for (const path of remainingPaths) {
       path.unshift(iStart);
       result.add(path);
     }
