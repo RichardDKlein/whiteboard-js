@@ -88,7 +88,7 @@ describe("ArrayHopscotch", () => {
   function doTest(a, iStart, expected) {
     const actual = arrayHopscotch(a, iStart);
     assert(areSetsEqual(expected, actual));
-    console.log(`${a}, start = ${iStart}`);
+    console.log(`a = [${a}], iStart = ${iStart}`);
     console.log("Winning hops:");
     printPaths(actual);
   }

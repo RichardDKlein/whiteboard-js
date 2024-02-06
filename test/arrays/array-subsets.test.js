@@ -53,6 +53,6 @@ describe("ArraySubsets", () => {
   function doTest(a, expected) {
     const actual = arraySubsets(a);
     assert.deepStrictEqual(actual, expected);
-    console.log(`a = ${a}, arrA = ${actual}`);
+    console.log(`a = [${a}], arrA = [${actual}]`);
   }
 });
