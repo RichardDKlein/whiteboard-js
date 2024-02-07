@@ -12,20 +12,18 @@
  * @returns {void}
  */
 export function bubbleSort(a) {
-  let lastUnsortedIndex = a.length - 1;
-  while (lastUnsortedIndex > 0) {
-    let swapOccurred = false;
-    let lastUnsortedIndexThisIteration = lastUnsortedIndex;
-    for (let i = 0; i < lastUnsortedIndex; i++) {
+  let swapped;
+  let numberOfUnsortedElements = a.length;
+  do {
+    swapped = false;
+    let newNumberOfUnsortedElements = 0;
+    for (let i = 0; i < numberOfUnsortedElements - 1; i++) {
       if (a[i] > a[i + 1]) {
         [a[i], a[i + 1]] = [a[i + 1], a[i]];
-        swapOccurred = true;
-        lastUnsortedIndexThisIteration = i;
+        swapped = true;
+        newNumberOfUnsortedElements = i + 1;
       }
     }
-    if (!swapOccurred) {
-      break;
-    }
-    lastUnsortedIndex = lastUnsortedIndexThisIteration;
-  }
+    numberOfUnsortedElements = newNumberOfUnsortedElements;
+  } while (swapped);
 }
