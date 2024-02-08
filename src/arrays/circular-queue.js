@@ -52,6 +52,7 @@ export class CircularQueue {
       return null;
     }
     const element = this.buf[this.head];
+    this.buf[this.head] = null;
     this.head = (this.head + 1) % this.buf.length;
     return element;
   }
