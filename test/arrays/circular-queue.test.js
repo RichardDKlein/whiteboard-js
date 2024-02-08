@@ -1,8 +1,6 @@
 import assert from "assert";
 import { CircularQueue } from "../../src/arrays/circular-queue.js";
 
-// MODEL A:
-// ========
 describe("CircularQueue", () => {
   let queue;
 
