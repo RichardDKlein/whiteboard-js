@@ -105,6 +105,3 @@ describe("CircularQueue", () => {
     return result;
   }
 });
-
-// MODEL B:
-// ========

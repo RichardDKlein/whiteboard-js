@@ -1,5 +1,5 @@
 /**
- * Partitions an array `a` of integers into disjoint subarrays `arrA` and `arrB`
+ * Partition an array `a` of integers into disjoint subarrays `arrA` and `arrB`
  * such that `arrA` is the smallest possible subarray whose elements sum to a
  * greater number than the elements of `arrB`. (Note that neither `arrA` nor
  * `arrB` need consist of consecutive elements from `a`.)

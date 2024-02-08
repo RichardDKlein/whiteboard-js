@@ -1,11 +1,12 @@
 /**
  * Sort an array using the bubble sort algorithm.
- * Performance is O(n*n).
  *
  * The algorithm is optimized to avoid re-examining
  * the already sorted elements that "sink" to the
  * bottom of the array during each iteration of the
  * bubble sort.
+ *
+ * Performance is O(n*n).
  *
  * @param {[number]} a The array to be sorted. It
  * will be sorted in place.
