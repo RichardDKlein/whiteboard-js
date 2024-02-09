@@ -10,10 +10,10 @@
  * The queue is considered empty when the head and the tail
  * point to the same element. The queue is considered full
  * when the next element after the tail is the head. Since
- * the tail always points to the next free slot, a full
- * queue contains exactly one free, and unusable, slot.
- * Thus, the capacity of a buffer of length n is actually
- * (n - 1).
+ * the tail always points to the next free slot, a full queue
+ * contains exactly one free, and unusable, slot. Thus, if we
+ * want a queue that can hold `capacity` elements, we need to
+ * allocate a buffer of length (capacity + 1).
  */
 export class CircularQueue {
   constructor(capacity) {
@@ -52,7 +52,6 @@ export class CircularQueue {
       return null;
     }
     const element = this.buf[this.head];
-    this.buf[this.head] = null;
     this.head = (this.head + 1) % this.buf.length;
     return element;
   }
