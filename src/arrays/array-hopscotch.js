@@ -31,8 +31,10 @@
  * @param {number} iStart The starting index for our game.
  * @returns {Set<number[]>} A Set containing all the winning paths. Each
  * winning path is an array containing a sequence of unique hop indices
- * that lead to a zero element. (If there are no winning paths, then the
- * Set will be empty.)
+ * that lead to a zero element. Note that the first element of a winning
+ * tuple must be `i_start`, and the last element must be the index of a
+ * zero element in `a`. If there are no winning paths, then the Set will
+ * be empty.)
  */
 export function arrayHopscotch(a, iStart) {
   return _helper(a, iStart, new Set());
