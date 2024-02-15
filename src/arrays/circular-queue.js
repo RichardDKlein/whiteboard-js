@@ -4,7 +4,7 @@
  * We keep two private indices, head and tail. The head
  * points to the element at the head of the queue. The
  * tail points to the next free slot at the end of the
- * queue. The head and tail chase each other around the
+ * queue. The tail and head chase each other around the
  * circular buffer as elements are added and removed.
  *
  * The queue is considered empty when the head and the tail
@@ -52,6 +52,7 @@ export class CircularQueue {
       return null;
     }
     const element = this.buf[this.head];
+    this.buf[this.head] = undefined;
     this.head = (this.head + 1) % this.buf.length;
     return element;
   }
