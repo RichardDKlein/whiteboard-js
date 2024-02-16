@@ -69,7 +69,7 @@ describe("CircularQueue", () => {
     console.log();
     assert(!add(20));
 
-    // remove six elements
+    // remove seven elements
     console.log();
     for (let i = 0; i < 7; i++) {
       const element = remove();
