@@ -12,8 +12,6 @@ function printLongString(s) {
     let nextIndex = Math.min(currIndex + maxLen, s.length);
     let line = s.slice(currIndex, nextIndex);
 
-    // If the next line would exceed maxLen and doesn't end with a space,
-    // find the last space within the maxLen range and break there instead.
     if (nextIndex < s.length && s.charAt(nextIndex) !== " ") {
       const lastSpace = line.lastIndexOf(" ");
       if (lastSpace !== -1) {
