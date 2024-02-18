@@ -8,7 +8,7 @@
  *
  * Performance is O(n*n).
  *
- * @param {[number]} a The array to be sorted. It
+ * @param {number[]} a The array to be sorted. It
  * will be sorted in place.
  * @returns {void}
  */
