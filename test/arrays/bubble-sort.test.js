@@ -1,7 +1,7 @@
 import assert from "assert";
 import { bubbleSort } from "../../src/arrays/bubble-sort.js";
 
-describe("BubbleSort", () => {
+describe("BubbleSort test suite", () => {
   before(() => {
     console.log();
     console.log("Test BubbleSort:");

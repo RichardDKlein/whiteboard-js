@@ -1,7 +1,7 @@
 import assert from "assert";
 import { CircularQueue } from "../../src/arrays/circular-queue.js";
 
-describe("CircularQueue", () => {
+describe("CircularQueue test suite", () => {
   let queue;
 
   beforeEach(() => {
