@@ -43,11 +43,10 @@ describe("FindPrimes", () => {
     const endTime = Date.now();
 
     const elapsedTime = endTime - startTime;
-    const microseconds = elapsedTime / 1000;
 
     console.log(primes);
     console.log();
-    console.log(`Elapsed time = ${microseconds} microseconds`);
+    console.log(`Elapsed time = ${elapsedTime} milliseconds`);
     assert.deepEqual(primes, expected);
   }
 });
