@@ -1,25 +1,15 @@
 import assert from "assert";
-import { findPrimes } from "../../src/arrays/find-primes.js";
+import { isPrime } from "../../src/arrays/is-prime.js";
 
-describe("FindPrimes", () => {
-  before(() => {
+describe("IsPrimeTest", function () {
+  before(function () {
     console.log();
-    console.log("Test FindPrimes:");
-    console.log("===============");
+    console.log("Test IsPrime:");
+    console.log("=============");
   });
 
-  it("upTo1", () => {
-    const expected = [];
-    doTest(1, expected);
-  });
-
-  it("upTo2", () => {
-    const expected = [2];
-    doTest(2, expected);
-  });
-
-  it("upTo1000", () => {
-    const expected = [
+  it("primes0to1000", function () {
+    let expected = [
       2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
       71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149,
       151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229,
@@ -32,21 +22,20 @@ describe("FindPrimes", () => {
       811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907,
       911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997,
     ];
-    doTest(1000, expected);
+
+    doTest(0, 1000, expected);
   });
 
-  function doTest(n, expected) {
-    console.log(`Primes up to ${n}:`);
+  function doTest(start, end, expected) {
+    console.log("Primes from %d to %d:", start, end);
 
-    const startTime = Date.now();
-    const primes = findPrimes(n);
-    const endTime = Date.now();
-
-    const elapsedTime = endTime - startTime;
-
-    console.log("[" + primes.join(", ") + "]");
-    console.log();
-    console.log(`Elapsed time = ${elapsedTime} milliseconds`);
+    let primes = [];
+    for (let i = start; i <= end; i++) {
+      if (isPrime(i)) {
+        primes.push(i);
+      }
+    }
+    console.log(primes.toString());
     assert.deepEqual(primes, expected);
   }
 });
