@@ -1,7 +1,7 @@
 import assert from "assert";
 import { arraySubsets } from "../../src/arrays/array-subsets.js";
 
-describe("ArraySubsets test suite", () => {
+describe("ArraySubsetsTest", () => {
   before(() => {
     console.log();
     console.log("Test array-subsets:");

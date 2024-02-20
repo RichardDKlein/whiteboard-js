@@ -1,7 +1,7 @@
 import assert from "assert";
 import { findPrimes } from "../../src/arrays/find-primes.js";
 
-describe("FindPrimes", () => {
+describe("FindPrimesTest", () => {
   before(() => {
     console.log();
     console.log("Test FindPrimes:");

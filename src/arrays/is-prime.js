@@ -4,10 +4,6 @@
  * @param {number} n A positive integer.
  * @returns 'true' if `n` is prime, `false` otherwise.
  */
-// export function isPrime(n) {
-//   // your code goes here
-// }
-
 export function isPrime(n) {
   if (n <= 1) {
     return false;

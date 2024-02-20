@@ -35,7 +35,7 @@ describe("IsPrimeTest", function () {
         primes.push(i);
       }
     }
-    console.log(primes.toString());
+    console.log("[" + primes.join(", ") + "]");
     assert.deepEqual(primes, expected);
   }
 });

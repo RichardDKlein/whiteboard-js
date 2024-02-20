@@ -1,7 +1,7 @@
 import assert from "assert";
 import { arrayHopscotch } from "../../src/arrays/array-hopscotch.js";
 
-describe("ArrayHopscotch test suite", () => {
+describe("ArrayHopscotchTest", () => {
   before(() => {
     console.log();
     console.log("Test array-hopscotch:");
